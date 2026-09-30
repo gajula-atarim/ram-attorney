@@ -37,26 +37,42 @@ a:hover{color:#063F57}
 @media (max-width:782px){.admin-bar .ram-site-header{top:46px}}
 @media (max-width:600px){.admin-bar .ram-site-header{top:0}}
 .elementor .e-con.rv-header{width:100%;background:rgba(255,255,255,0.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #E1E3E3}
-.elementor .e-con.rv-header-inner{display:flex;flex-direction:row;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center;padding:16px 32px}
+.elementor .e-con.rv-header-inner{display:flex;flex-direction:row;flex-wrap:wrap;gap:16px 32px;justify-content:flex-start;align-items:center;padding:16px 32px}
 .elementor .elementor-widget.rv-logo{width:auto;flex:none}
 .elementor .rv-logo a{display:block;line-height:0}
 .elementor .rv-logo img{display:block;height:58px;width:auto;max-width:none}
-.elementor .e-con.rv-nav{display:flex;flex-direction:row;flex-wrap:nowrap;flex:none;width:auto;gap:clamp(6px,1.4vw,14px);align-items:center;white-space:nowrap;font-size:15px}
+.elementor .e-con.rv-nav{display:flex;flex-direction:row;flex-wrap:nowrap;flex:none;width:auto;margin-left:auto;gap:clamp(6px,1.4vw,14px);align-items:center;white-space:nowrap;font-size:15px}
 .elementor .elementor-widget.rv-nav-item{width:auto;flex:none}
 .elementor .rv-nav-item a{display:block;padding:9px 16px;border-radius:999px;color:#211F20;text-decoration:none;line-height:1.4;transition:background 0.2s,color 0.2s}
 .elementor .rv-nav-item a:hover{background:#E4EEF2;color:#211F20}
 .elementor .rv-nav-item a.is-active{background:#063F57;color:#fff}
-.elementor .e-con .elementor-widget.rv-lang{display:flex;flex-direction:row;align-items:center;gap:2px;width:auto;flex:none;margin-left:8px;padding:3px;border:1px solid #D5D9DA;border-radius:999px;font-size:12px;line-height:1.4;letter-spacing:0.08em}
+.elementor .e-con .elementor-widget.rv-lang{display:flex;flex-direction:row;align-items:center;gap:2px;width:auto;flex:none;margin-left:0;padding:3px;border:1px solid #D5D9DA;border-radius:999px;font-size:12px;line-height:1.4;letter-spacing:0.08em}
 .elementor .rv-lang .elementor-widget-container,.elementor .rv-lang p{display:contents}
 .elementor .rv-lang a[lang],.elementor .rv-lang span[lang]{display:block;padding:5px 11px;border-radius:999px;color:#5E6366;text-decoration:none}
 .elementor .rv-lang a[lang]:hover{color:#063F57;background:#E4EEF2}
 .elementor .rv-lang span[lang].is-active{background:#B08D57;color:#fff}
-@media (max-width:480px){
-	.elementor .e-con.rv-header-inner{padding:14px 20px;gap:12px}
-	.elementor .e-con.rv-nav{flex-wrap:wrap;gap:4px;font-size:14px}
-	.elementor .rv-nav-item a{padding:8px 11px}
-	.elementor .e-con .elementor-widget.rv-lang{margin-left:4px}
-	.elementor .rv-lang a[lang],.elementor .rv-lang span[lang]{padding:5px 9px}
+/* FR/EN switch and the hamburger (phones only) sit together on the right */
+.elementor .e-con.rv-hactions{display:flex;flex-direction:row;align-items:center;gap:10px;width:auto;flex:none;margin-left:calc(clamp(6px,1.4vw,14px) + 8px)}
+.elementor .elementor-widget.rv-toggle{display:none;width:auto;flex:none;line-height:0}
+.ram-menu-toggle{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0;padding:0;border:1px solid #D5D9DA;border-radius:999px;background:#fff;color:#063F57;cursor:pointer;transition:background 0.2s,border-color 0.2s}
+.ram-menu-toggle:hover,.ram-menu-toggle:focus-visible{background:#E4EEF2;border-color:#C9D6DB;color:#063F57}
+.ram-menu-toggle__bars,.ram-menu-toggle__bars::before,.ram-menu-toggle__bars::after{display:block;width:18px;height:2px;border-radius:2px;background:currentColor;transition:transform 0.25s,background 0.25s}
+.ram-menu-toggle__bars{position:relative}
+.ram-menu-toggle__bars::before,.ram-menu-toggle__bars::after{content:"";position:absolute;left:0}
+.ram-menu-toggle__bars::before{top:-6px}
+.ram-menu-toggle__bars::after{top:6px}
+.ram-menu-toggle[aria-expanded="true"] .ram-menu-toggle__bars{background:transparent}
+.ram-menu-toggle[aria-expanded="true"] .ram-menu-toggle__bars::before{transform:translateY(6px) rotate(45deg)}
+.ram-menu-toggle[aria-expanded="true"] .ram-menu-toggle__bars::after{transform:translateY(-6px) rotate(-45deg)}
+@media (max-width:767px){
+	.elementor .e-con.rv-header-inner{padding:12px 20px;gap:0 12px}
+	.elementor .rv-logo img{height:48px}
+	.elementor .e-con.rv-hactions{margin-left:auto}
+	.elementor .elementor-widget.rv-toggle{display:block}
+	.elementor .e-con.rv-nav{order:3;display:none;flex:0 0 100%;width:100%;margin:12px 0 0;padding:12px 0 8px;flex-direction:column;align-items:stretch;gap:4px;border-top:1px solid #E1E3E3;white-space:normal;font-size:16px}
+	.elementor .e-con.rv-nav.is-open{display:flex}
+	.elementor .elementor-widget.rv-nav-item{width:100%}
+	.elementor .rv-nav-item a{padding:12px 16px;border-radius:12px}
 }
 
 /* ---------- Home: hero ---------- */

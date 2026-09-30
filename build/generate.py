@@ -195,11 +195,15 @@ def email_link(user):
 def header(lang):
     t, d = T[lang], Doc('header-' + lang)
     nav = [d.text('rv-nav-item', f'<p><a href="{url}">{esc(label)}</a></p>') for label, url in t['nav']]
-    nav.append(d.text('rv-lang', '<p>[ram_lang_switch style="pills"]</p>'))
+    # On phones the menu folds behind the hamburger ([ram_menu_toggle] opens #ram-menu); the FR/EN switch stays beside it.
     return [d.con('rv-header', [
         d.con('rv-inner rv-header-inner', [
             d.image('rv-logo', 'logo', t['logo_alt'], link=t['nav'][0][1]),
-            d.con('rv-nav', nav, tag='nav'),
+            d.con('rv-nav', nav, tag='nav', extra={'_element_id': 'ram-menu'}),
+            d.con('rv-hactions', [
+                d.text('rv-lang', '<p>[ram_lang_switch style="pills"]</p>'),
+                d.w('shortcode', 'rv-toggle', {'shortcode': '[ram_menu_toggle]'}),
+            ]),
         ]),
     ], inner=False)]
 
