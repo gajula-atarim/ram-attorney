@@ -189,7 +189,7 @@ def p(s):
 
 
 def email_link(user):
-    return f'<p><a href="mailto:{user}@rammanagement.ca">{user}(at)rammanagement.ca</a></p>'
+    return f'<p><a href="mailto:{user}@rammanagement.ca">{user}@rammanagement.ca</a></p>'
 
 
 def header(lang):
@@ -318,7 +318,7 @@ def contact(lang):
                 d.con('rv-dcards', [
                     card('pin', '<p>' + '<br>'.join(esc(x) for x in t['address']) + '</p>'),
                     card('phone', '<p>' + esc(t['tel']) + '<br>' + esc(t['fax']) + '</p>', link='tel:+15143694412'),
-                    card('mail', '<p>info(at)rammanagement.ca</p>', link='mailto:info@rammanagement.ca', extra_cls='rv-dtext--mail'),
+                    card('mail', '<p>info@rammanagement.ca</p>', link='mailto:info@rammanagement.ca', extra_cls='rv-dtext--mail'),
                 ]),
             ]),
         ]),
