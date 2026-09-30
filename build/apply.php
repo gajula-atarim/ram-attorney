@@ -145,7 +145,11 @@ foreach ( array( 'header' => 'Header', 'footer' => 'Footer' ) as $key => $label 
 		$ids[ $lang ]             = (int) $id;
 		$new[ $key . '-' . $lang ] = array( 'id' => (int) $id, 'slug' => get_post_field( 'post_name', $id ), 'saved' => $how );
 	}
-	$link( $ids['fr'], $ids['en'], 'post_elementor_library' );
+	// Each template gets its own language and no translation link: the theme picks them by slug, and a
+	// WPML link would make WPML copy the French template's content into the English one.
+	foreach ( $ids as $lang => $tid ) {
+		do_action( 'wpml_set_element_language_details', array( 'element_id' => $tid, 'element_type' => 'post_elementor_library', 'trid' => false, 'language_code' => $lang, 'source_language_code' => null ) );
+	}
 }
 
 // 6. The new French home page is the front page (WPML serves its English translation at /en/).
