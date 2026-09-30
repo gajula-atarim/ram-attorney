@@ -328,7 +328,7 @@ def contact(lang):
                 ]),
             ]),
         ]),
-        contact_form(lang),
+        # The contact form section (contact_form) was taken off the Contact pages at the client's request.
         d.section('rv-map-section', [
             d.con('rv-inner rv-map-inner', [
                 d.heading('rv-h2', t['map_title'], 'h2'),
