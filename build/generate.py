@@ -231,7 +231,7 @@ def home(lang):
     return [d.section('rv-hero', [
         d.con('rv-inner rv-hero-inner', [
             d.text('rv-pill', p(t['home_label'])),
-            d.heading('rv-h1', t['home1'], 'h1'),
+            d.heading('rv-h1', t['home1'].replace('RAM Management - ', 'RAM Management -<br>', 1), 'h1'),
             d.rule('rv-rule--hero', 72),
             d.text('rv-lead', p(t['home2'])),
         ]),
