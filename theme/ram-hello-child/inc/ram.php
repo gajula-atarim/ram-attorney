@@ -26,11 +26,17 @@ add_action( 'wp_enqueue_scripts', function () {
 			$deps[] = $handle;
 		}
 	}
-	wp_enqueue_style( 'ram-site', $uri . '/assets/site.css', $deps, filemtime( $dir . '/assets/site.css' ) );
-	// Styles for the native Elementor widgets (icons, icon lists, map, slider dots).
-	wp_enqueue_style( 'ram-extra', $uri . '/assets/ram-extra.css', array( 'ram-site' ), filemtime( $dir . '/assets/ram-extra.css' ) );
-	// Header and footer built in Elementor (Templates > Saved Templates > RAM Header / RAM Footer).
-	wp_enqueue_style( 'ram-hf', $uri . '/assets/ram-hf.css', array( 'ram-extra' ), filemtime( $dir . '/assets/ram-hf.css' ) );
+	if ( ram_is_v2() ) {
+		// 2026 design: pages, header and footer (Templates > Saved Templates > RAM v2 Header / RAM v2 Footer).
+		wp_enqueue_style( 'ram-v2', $uri . '/assets/ram-v2.css', $deps, filemtime( $dir . '/assets/ram-v2.css' ) );
+	} else {
+		// Original design, kept for the old draft pages.
+		wp_enqueue_style( 'ram-site', $uri . '/assets/site.css', $deps, filemtime( $dir . '/assets/site.css' ) );
+		// Styles for the native Elementor widgets (icons, icon lists, map, slider dots).
+		wp_enqueue_style( 'ram-extra', $uri . '/assets/ram-extra.css', array( 'ram-site' ), filemtime( $dir . '/assets/ram-extra.css' ) );
+		// Header and footer built in Elementor (Templates > Saved Templates > RAM Header / RAM Footer).
+		wp_enqueue_style( 'ram-hf', $uri . '/assets/ram-hf.css', array( 'ram-extra' ), filemtime( $dir . '/assets/ram-hf.css' ) );
+	}
 	wp_enqueue_script( 'ram-site', $uri . '/assets/ram.js', array(), filemtime( $dir . '/assets/ram.js' ), array( 'in_footer' => true, 'strategy' => 'defer' ) );
 
 	// The pages are hand-built; block theme global styles would only fight the design.
@@ -82,7 +88,10 @@ function ram_lang() {
 }
 
 // "EN / FR" switch in the header, linked to the translation of the current page (or that language's home page).
-add_shortcode( 'ram_lang_switch', function () {
+// [ram_lang_switch style="pills"] leaves out the "/" between the languages (2026 design).
+add_shortcode( 'ram_lang_switch', function ( $atts ) {
+	$atts = shortcode_atts( array( 'style' => '' ), $atts, 'ram_lang_switch' );
+	$sep  = 'pills' === $atts['style'] ? '' : '<span aria-hidden="true">/</span>';
 	$langs = apply_filters( 'wpml_active_languages', null, array( 'skip_missing' => 0, 'orderby' => 'code', 'order' => 'asc' ) );
 	if ( empty( $langs ) || count( $langs ) < 2 ) {
 		// WPML not set up yet: keep the original static switch.
@@ -98,7 +107,7 @@ add_shortcode( 'ram_lang_switch', function () {
 			$out[] = '<a href="' . esc_url( $lang['url'] ) . '" lang="' . esc_attr( $code ) . '" hreflang="' . esc_attr( $code ) . '" title="' . $name . '" aria-label="' . $name . '">' . $label . '</a>';
 		}
 	}
-	return implode( '<span aria-hidden="true">/</span>', $out );
+	return implode( $sep, $out );
 } );
 
 /* ---------- Contact Form 7 ---------- */
@@ -151,6 +160,44 @@ add_shortcode( 'ram_contact_form', function () {
 		return '';
 	}
 	return do_shortcode( '[contact-form-7 id="' . $id . '" html_class="ram-form"]' );
+} );
+
+/* ---------- 2026 design ---------- */
+
+// Old-design header and footer templates (Templates > Saved Templates), kept for the old draft pages.
+const RAM_V1_TEMPLATES = array( 'ram-header', 'ram-header-fr', 'ram-footer', 'ram-footer-fr' );
+
+/**
+ * Whether the current view uses the 2026 design. Pages built with it carry the "_ram_v2" flag;
+ * the old-design draft pages and their header/footer templates keep the original styles.
+ */
+function ram_is_v2() {
+	if ( is_singular( 'elementor_library' ) ) {
+		return ! in_array( get_post_field( 'post_name', get_queried_object_id() ), RAM_V1_TEMPLATES, true );
+	}
+	if ( is_page() ) {
+		return (bool) get_post_meta( get_queried_object_id(), '_ram_v2', true );
+	}
+	return true;
+}
+
+// Header/footer template slug for the current view: "ram-v2-header" or the original "ram-header".
+function ram_hf_slug( $part ) {
+	return ram_is_v2() ? 'ram-v2-' . $part : 'ram-' . $part;
+}
+
+// Preview of draft pages while the new design is reviewed: add ?ram_preview=<token> to a page address.
+// The token is the "ram_preview_token" option; delete that option to turn previews off.
+add_action( 'pre_get_posts', function ( $query ) {
+	if ( is_admin() || ! $query->is_main_query() || ! isset( $_GET['ram_preview'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		return;
+	}
+	$token = (string) get_option( 'ram_preview_token' );
+	if ( '' === $token || ! hash_equals( $token, (string) wp_unslash( $_GET['ram_preview'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		return;
+	}
+	$query->set( 'post_status', array( 'publish', 'draft' ) );
+	add_filter( 'wp_robots', 'wp_robots_no_robots' );
 } );
 
 /* ---------- Header helpers ---------- */

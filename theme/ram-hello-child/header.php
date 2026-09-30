@@ -10,7 +10,7 @@
 <?php $ram_fr = 'fr' === ram_lang(); ?>
 <a class="ram-skip" href="#main"><?php echo $ram_fr ? 'Aller au contenu' : 'Skip to content'; ?></a>
 
-<?php $ram_header = ram_hf_template( 'ram-header' ); ?>
+<?php $ram_header = ram_hf_template( ram_hf_slug( 'header' ) ); ?>
 <?php if ( $ram_header ) : ?>
 <header class="ram-site-header ram-hf"><?php echo $ram_header; // phpcs:ignore WordPress.Security.EscapeOutput -- Elementor render. ?></header>
 <?php else : ?>

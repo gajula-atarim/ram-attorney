@@ -1,7 +1,7 @@
 <?php defined( 'ABSPATH' ) || exit; ?>
 </main>
 
-<?php $ram_footer = ram_hf_template( 'ram-footer' ); ?>
+<?php $ram_footer = ram_hf_template( ram_hf_slug( 'footer' ) ); ?>
 <?php if ( $ram_footer ) : ?>
 <footer class="ram-site-footer ram-hf"><?php echo $ram_footer; // phpcs:ignore WordPress.Security.EscapeOutput -- Elementor render. ?></footer>
 <?php else : ?>

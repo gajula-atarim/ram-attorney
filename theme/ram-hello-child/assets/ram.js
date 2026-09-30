@@ -22,10 +22,10 @@
 		else window.addEventListener('resize', setTopbar);
 	}
 
-	// Elementor header: highlight the current page and label the menu.
-	var navEl = document.querySelector('.ramhf-nav');
+	// Elementor header (both designs): highlight the current page and label the menu.
+	var navEl = document.querySelector('.rv-nav, .ramhf-nav');
 	if (navEl) {
-		if (navEl.tagName === 'NAV' && !navEl.hasAttribute('aria-label')) navEl.setAttribute('aria-label', 'Main');
+		if (navEl.tagName === 'NAV' && !navEl.hasAttribute('aria-label')) navEl.setAttribute('aria-label', document.documentElement.lang.indexOf('fr') === 0 ? 'Principal' : 'Main');
 		var here = location.pathname.replace(/\/+$/, '') || '/';
 		Array.prototype.forEach.call(navEl.querySelectorAll('a'), function (a) {
 			if ((a.pathname.replace(/\/+$/, '') || '/') === here) {
