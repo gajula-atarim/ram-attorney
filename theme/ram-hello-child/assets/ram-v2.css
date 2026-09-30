@@ -16,8 +16,8 @@ a:hover{color:#063F57}
 .elementor .e-con.rv{--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--margin-top:0px;--margin-bottom:0px;--gap:0px;--row-gap:0px;--column-gap:0px;--widgets-spacing:0px;--widgets-spacing-row:0px;--widgets-spacing-column:0px;--min-height:0px;min-height:0;border-radius:0}
 .elementor .e-con.rv .elementor-widget{margin:0}
 .elementor .e-con.rv .elementor-widget-text-editor{color:inherit}
-.elementor .e-con.rv .elementor-widget-text-editor p{margin:0}
-.elementor .e-con.rv .elementor-heading-title{margin:0;color:inherit}
+.e-con.rv :where(.elementor-widget-text-editor) p{margin:0}
+.e-con.rv :where(.elementor-heading-title){margin:0;color:inherit}
 .elementor .e-con.rv > .e-con{position:relative;z-index:1}
 .elementor .e-con.rv-section{width:100%;max-width:none;position:relative;overflow:hidden}
 .elementor .e-con.rv-inner{width:100%;max-width:1040px;margin-left:auto;margin-right:auto}
@@ -46,18 +46,17 @@ a:hover{color:#063F57}
 .elementor .rv-nav-item a{display:block;padding:9px 16px;border-radius:999px;color:#211F20;text-decoration:none;line-height:1.4;transition:background 0.2s,color 0.2s}
 .elementor .rv-nav-item a:hover{background:#E4EEF2;color:#211F20}
 .elementor .rv-nav-item a.is-active{background:#063F57;color:#fff}
-.elementor .elementor-widget.rv-lang{width:auto;flex:none;margin-left:8px}
-.elementor .rv-lang p,.elementor .rv-lang .elementor-widget-container{display:flex;gap:2px;padding:3px;border:1px solid #D5D9DA;border-radius:999px;font-size:12px;line-height:1.4;letter-spacing:0.08em}
-.elementor .rv-lang .elementor-widget-container p{padding:0;border:0}
-.elementor .rv-lang a,.elementor .rv-lang span[lang]{display:block;padding:5px 11px;border-radius:999px;color:#5E6366;text-decoration:none}
-.elementor .rv-lang a:hover{color:#063F57;background:#E4EEF2}
-.elementor .rv-lang .is-active{background:#B08D57;color:#fff}
+.elementor .e-con .elementor-widget.rv-lang{display:flex;flex-direction:row;align-items:center;gap:2px;width:auto;flex:none;margin-left:8px;padding:3px;border:1px solid #D5D9DA;border-radius:999px;font-size:12px;line-height:1.4;letter-spacing:0.08em}
+.elementor .rv-lang .elementor-widget-container,.elementor .rv-lang p{display:contents}
+.elementor .rv-lang a[lang],.elementor .rv-lang span[lang]{display:block;padding:5px 11px;border-radius:999px;color:#5E6366;text-decoration:none}
+.elementor .rv-lang a[lang]:hover{color:#063F57;background:#E4EEF2}
+.elementor .rv-lang span[lang].is-active{background:#B08D57;color:#fff}
 @media (max-width:480px){
 	.elementor .e-con.rv-header-inner{padding:14px 20px;gap:12px}
 	.elementor .e-con.rv-nav{flex-wrap:wrap;gap:4px;font-size:14px}
 	.elementor .rv-nav-item a{padding:8px 11px}
-	.elementor .elementor-widget.rv-lang{margin-left:4px}
-	.elementor .rv-lang a,.elementor .rv-lang span[lang]{padding:5px 9px}
+	.elementor .e-con .elementor-widget.rv-lang{margin-left:4px}
+	.elementor .rv-lang a[lang],.elementor .rv-lang span[lang]{padding:5px 9px}
 }
 
 /* ---------- Home: hero ---------- */
@@ -66,8 +65,7 @@ a:hover{color:#063F57}
 .elementor .e-con.rv-hero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at calc(100% - 130px) 130px,transparent 309px,rgba(217,191,143,0.28) 310px,transparent 311px),radial-gradient(circle at calc(100% - 130px) 130px,transparent 199px,rgba(217,191,143,0.18) 200px,transparent 201px),radial-gradient(ellipse 45% 60% at 90% 15%,rgba(19,120,160,0.5),transparent 65%),radial-gradient(ellipse 40% 55% at 5% 100%,rgba(176,141,87,0.3),transparent 65%)}
 .elementor .e-con.rv-hero-inner{display:flex;flex-direction:column;gap:32px;padding:110px 32px}
 .elementor .rv-h1 .elementor-heading-title{max-width:19ch;font-family:'Source Serif 4',serif;font-weight:400;font-size:clamp(42px,5.6vw,76px);line-height:1.06;letter-spacing:-0.015em;text-wrap:balance;color:#fff}
-.elementor .elementor-widget.rv-lead{max-width:62ch}
-.elementor .rv-lead p{font-size:clamp(17px,1.5vw,20px);line-height:1.75;font-weight:300;color:#fff;text-wrap:pretty}
+.elementor .rv-lead p{max-width:62ch;font-size:clamp(17px,1.5vw,20px);line-height:1.75;font-weight:300;color:#fff;text-wrap:pretty}
 
 /* ---------- Page banners (About, Contact) ---------- */
 .elementor .e-con.rv-banner{color:#fff;background-color:#063F57}
@@ -90,12 +88,11 @@ a:hover{color:#063F57}
 /* ---------- About: services ---------- */
 .elementor .e-con.rv-services{background:#F4F4F4;margin-bottom:88px}
 .elementor .e-con.rv-services-inner{display:flex;flex-direction:column;gap:44px;padding:88px 32px}
-.elementor .elementor-widget.rv-services-lead{max-width:62ch;margin-left:auto;margin-right:auto}
-.elementor .rv-services-lead p{text-align:center;font-family:'Source Serif 4',serif;font-size:clamp(21px,2vw,26px);line-height:1.5;color:#063F57;text-wrap:pretty}
+.elementor .rv-services-lead p{max-width:62ch;margin-left:auto;margin-right:auto;text-align:center;font-family:'Source Serif 4',serif;font-size:clamp(21px,2vw,26px);line-height:1.5;color:#063F57;text-wrap:pretty}
 .elementor .e-con.rv-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:16px;align-items:stretch}
 .elementor .elementor-widget.rv-card{height:100%;background:#fff;color:#063F57;border-radius:18px;border-bottom:2px solid #B08D57;padding:24px 20px 28px;box-shadow:0 1px 2px rgba(5,44,61,0.04);transition:background 0.3s,color 0.3s,transform 0.3s,box-shadow 0.3s}
 .elementor .elementor-widget.rv-card:hover{background:#063F57;color:#fff;transform:translateY(-6px);box-shadow:0 20px 40px rgba(5,44,61,0.18)}
-.elementor .rv-card .elementor-icon-box-wrapper{display:flex;flex-direction:column;align-items:flex-start;gap:22px;text-align:left}
+.elementor .elementor-widget.rv-card .elementor-icon-box-wrapper,.elementor .elementor-widget.rv-card .elementor-icon-box-content{display:flex;flex-direction:column;align-items:flex-start;gap:22px;text-align:left}
 .elementor .rv-card .elementor-icon-box-icon{display:flex;align-items:center;justify-content:center;flex:none;width:44px;height:44px;margin:0;border-radius:50%;background:#fff;border:1px solid #E6DCCB;line-height:0}
 .elementor .rv-card .elementor-icon{display:flex;font-size:20px;line-height:0;color:#B08D57}
 .elementor .rv-card .elementor-icon svg{width:20px;height:20px;fill:none;stroke:currentColor}
@@ -119,7 +116,7 @@ a:hover{color:#063F57}
 .elementor .e-con.rv-member:hover{background:rgba(255,255,255,0.09);border-color:rgba(217,191,143,0.6);transform:translateY(-4px)}
 .elementor .rv-member p{font-size:15px;line-height:1.75;font-weight:300;color:#fff;text-wrap:pretty}
 .elementor .elementor-widget.rv-member-email{margin-top:auto;padding-top:8px}
-.elementor .rv-member-email a{color:#D9BF8F;font-weight:400}
+.elementor .rv-member-email a{color:#D9BF8F;font-weight:400;text-decoration:underline;text-underline-offset:3px}
 .elementor .rv-member-email a:hover{color:#fff}
 
 /* ---------- Contact: details ---------- */
@@ -159,10 +156,12 @@ a:hover{color:#063F57}
 .elementor .rv-flink p{font-size:15px;line-height:1.6}
 .elementor .rv-flink a{color:#fff;text-decoration:none}
 .elementor .rv-flink a:hover{color:#D9BF8F}
-.elementor .rv-ftitle .elementor-heading-title{margin:0 0 16px;font-family:'Source Serif 4',serif;font-weight:500;font-size:20px;line-height:1.2;color:#D9BF8F}
-.elementor .rv-faddr p{margin:0 0 14px;font-size:15px;line-height:1.6;color:#fff}
+.elementor .e-con .elementor-widget.rv-ftitle{margin-bottom:16px}
+.elementor .rv-ftitle .elementor-heading-title{font-family:'Source Serif 4',serif;font-weight:500;font-size:20px;line-height:1.2;color:#D9BF8F}
+.elementor .e-con .elementor-widget.rv-faddr{margin-bottom:14px}
+.elementor .rv-faddr p{font-size:15px;line-height:1.6;color:#fff}
 .elementor .rv-fmail p{font-size:15px;line-height:1.6}
-.elementor .rv-fmail a{color:#fff}
+.elementor .rv-fmail a{color:#fff;text-decoration:underline;text-underline-offset:3px}
 .elementor .rv-fmail a:hover{color:#D9BF8F}
 .elementor .e-con.rv-frule{width:100%;height:0;border-top:1px solid rgba(255,255,255,0.18)}
 
