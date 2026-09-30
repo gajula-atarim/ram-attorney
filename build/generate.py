@@ -67,6 +67,7 @@ T = {
         'form_title': 'Get in touch with us',
         'map_title': 'MAP',
         'footer_contact': 'Contact',
+        'footer_pages': 'Pages',
     },
     'fr': {
         'nav': [('Accueil', '/'), ('À propos', '/a-propos/'), ('Contact', '/nous-joindre/')],
@@ -106,6 +107,7 @@ T = {
         'form_title': 'Communiquez avec nous',
         'map_title': 'CARTE',
         'footer_contact': 'Contact',
+        'footer_pages': 'Pages',
     },
 }
 
@@ -217,7 +219,7 @@ def footer(lang):
                     d.image('rv-flogo', 'logo_white', 'R.A.M. Management', link=t['nav'][0][1]),
                     d.text('rv-ftag', p(t['home1'])),
                 ]),
-                d.con('rv-fcol rv-flinks', [d.text('rv-flink', f'<p><a href="{url}">{esc(label)}</a></p>') for label, url in t['nav']]),
+                d.con('rv-fcol rv-flinks', [d.heading('rv-ftitle', t['footer_pages'], 'h4')] + [d.text('rv-flink', f'<p><a href="{url}">{esc(label)}</a></p>') for label, url in t['nav']]),
                 d.con('rv-fcol rv-fcontact', [
                     d.heading('rv-ftitle', t['footer_contact'], 'h4'),
                     d.text('rv-faddr', '<p>' + '<br>'.join(esc(x) for x in t['address']) + '</p>'),
