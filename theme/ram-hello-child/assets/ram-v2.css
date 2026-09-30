@@ -69,8 +69,10 @@ a:hover{color:#063F57}
 	.elementor .rv-logo img{height:48px}
 	.elementor .e-con.rv-hactions{margin-left:auto}
 	.elementor .elementor-widget.rv-toggle{display:block}
-	.elementor .e-con.rv-nav{order:3;display:none;flex:0 0 100%;width:100%;margin:12px 0 0;padding:12px 0 8px;flex-direction:column;align-items:stretch;gap:4px;border-top:1px solid #E1E3E3;white-space:normal;font-size:16px}
-	.elementor .e-con.rv-nav.is-open{display:flex}
+	.elementor .e-con.rv-header-inner{position:relative}
+	/* The menu opens as a dropdown card under the hamburger, about half the screen wide, over the page */
+	.elementor .e-con.rv-header-inner > .e-con.rv-nav{position:absolute;top:calc(100% - 4px);right:20px;left:auto;z-index:60;display:none;flex-direction:column;align-items:stretch;gap:4px;width:50%;min-width:220px;max-width:calc(100% - 40px);margin:0;padding:8px;background:#fff;border:1px solid #E1E3E3;border-radius:16px;box-shadow:0 18px 40px rgba(5,44,61,0.16);white-space:normal;font-size:16px}
+	.elementor .e-con.rv-header-inner > .e-con.rv-nav.is-open{display:flex}
 	.elementor .elementor-widget.rv-nav-item{width:100%}
 	.elementor .rv-nav-item a{padding:12px 16px;border-radius:12px}
 }
