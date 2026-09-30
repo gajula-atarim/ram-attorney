@@ -133,9 +133,10 @@ a:hover{color:#063F57}
 .elementor .e-con.rv-member{display:flex;flex-direction:column;gap:16px;width:auto;min-width:0;padding:32px 28px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:22px;font-size:15px;line-height:1.75;font-weight:300;transition:background 0.3s,border-color 0.3s,transform 0.3s}
 .elementor .e-con.rv-member:hover{background:rgba(255,255,255,0.09);border-color:rgba(217,191,143,0.6);transform:translateY(-4px)}
 .elementor .rv-member p{font-size:15px;line-height:1.75;font-weight:300;color:#fff;text-wrap:pretty}
-.elementor .elementor-widget.rv-member-email{margin-top:auto;padding-top:8px}
-.elementor .rv-member-email a{color:#D9BF8F;font-weight:400;text-decoration:underline;text-underline-offset:3px}
-.elementor .rv-member-email a:hover{color:#fff}
+.elementor .e-con.rv-team-grid > .e-con.rv-member{align-self:stretch;height:auto;min-height:100%}
+.elementor .e-con .elementor-widget.rv-member-email{margin-top:auto;padding-top:24px}
+.elementor .rv-member-email a{color:#D9BF8F;font-weight:400;text-decoration:none}
+.elementor .rv-member-email a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
 
 /* ---------- Contact: details ---------- */
 .elementor .e-con.rv-details{background:#F2F1EE}
