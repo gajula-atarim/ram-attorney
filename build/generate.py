@@ -63,6 +63,8 @@ T = {
         'address': ['R.A.M. Management', '5165 Queen Mary Road, suite 405', 'Montreal, Quebec', 'Canada', 'H3W 1X7'],
         'tel': 'Tel: 514.369.4412',
         'fax': 'Fax: 514.489.5155',
+        'form_label': 'Have any questions?',
+        'form_title': 'Get in touch with us',
         'map_title': 'MAP',
         'footer_contact': 'Contact',
     },
@@ -100,6 +102,8 @@ T = {
         'address': ['RAM Management - Avocats', '5165, chemin Queen Mary, suite 405', 'Montréal, Québec', 'Canada', 'H3W 1X7'],
         'tel': 'Tél. : 514.369.4412',
         'fax': 'Télécopieur : 514.489.5155',
+        'form_label': 'Vous avez des questions?',
+        'form_title': 'Communiquez avec nous',
         'map_title': 'CARTE',
         'footer_contact': 'Contact',
     },
@@ -277,6 +281,20 @@ def about(lang):
     ]
 
 
+def contact_form(lang):
+    """Contact form section (Contact Form 7 through [ram_contact_form], which picks the form in the page's language)."""
+    t, d = T[lang], Doc('contact-form-' + lang)
+    return d.section('rv-form-section', [
+        d.con('rv-inner rv-form-inner', [
+            d.con('rv-col rv-form-intro', [
+                d.text('rv-kicker', p(t['form_label'])),
+                d.heading('rv-h2', t['form_title'], 'h2'),
+            ]),
+            d.con('rv-form-card', [d.w('shortcode', 'rv-form', {'shortcode': '[ram_contact_form]'})]),
+        ]),
+    ])
+
+
 def contact(lang):
     t, d = T[lang], Doc('contact-' + lang)
 
@@ -304,6 +322,7 @@ def contact(lang):
                 ]),
             ]),
         ]),
+        contact_form(lang),
         d.section('rv-map-section', [
             d.con('rv-inner rv-map-inner', [
                 d.heading('rv-h2', t['map_title'], 'h2'),
@@ -320,7 +339,7 @@ def contact(lang):
 def main():
     out = os.path.join(HERE, 'elementor')
     os.makedirs(out, exist_ok=True)
-    for name, fn in (('header', header), ('footer', footer), ('home', home), ('about', about), ('contact', contact)):
+    for name, fn in (('header', header), ('footer', footer), ('home', home), ('about', about), ('contact', contact), ('contact-form', lambda lang: [contact_form(lang)])):
         for lang in ('fr', 'en'):
             with open(os.path.join(out, f'{name}-{lang}.json'), 'w', encoding='utf-8') as f:
                 json.dump(fn(lang), f, ensure_ascii=False, separators=(',', ':'))

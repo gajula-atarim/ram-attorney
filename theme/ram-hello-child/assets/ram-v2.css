@@ -134,6 +134,33 @@ a:hover{color:#063F57}
 .elementor .rv-dtext p{font-size:16px;line-height:1.75;color:var(--rv-bc);transition:color 0.3s}
 .elementor .rv-dtext--mail p{text-decoration:underline;text-underline-offset:3px}
 
+/* ---------- Contact: form (Contact Form 7 via [ram_contact_form]) ---------- */
+.elementor .e-con.rv-form-section{background:#fff}
+.elementor .e-con.rv-form-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:40px 72px;align-items:start;padding:88px 32px 0}
+@media (max-width:823px){.elementor .e-con.rv-form-inner{grid-template-columns:1fr;gap:28px}}
+.elementor .e-con.rv-form-intro{gap:14px}
+.elementor .rv-kicker p{font-size:13px;line-height:1.4;letter-spacing:0.18em;text-transform:uppercase;color:#B08D57}
+.elementor .e-con.rv-form-card{width:auto;min-width:0;padding:36px 32px 40px;background:#F2F1EE;border-radius:22px;border-bottom:2px solid #B08D57}
+@media (max-width:480px){.elementor .e-con.rv-form-card{padding:28px 20px 32px}}
+.rv-form .wpcf7 form{display:flex;flex-direction:column;gap:14px;margin:0}
+.rv-form .wpcf7 p{margin:0}
+.rv-form .ram-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:560px){.rv-form .ram-row{grid-template-columns:1fr}}
+.rv-form .ram-field label{display:block;margin:0}
+.rv-form .wpcf7-form-control-wrap{display:block}
+.rv-form input.wpcf7-form-control:not([type="submit"]),.rv-form textarea.wpcf7-form-control{display:block;width:100%;margin:0;padding:14px 16px;border:1px solid #D5D9DA;border-radius:12px;background:#fff;color:#211F20;font:inherit;font-size:15px;line-height:1.5;box-shadow:none;transition:border-color 0.2s,box-shadow 0.2s}
+.rv-form textarea.wpcf7-form-control{min-height:150px;resize:vertical}
+.rv-form input.wpcf7-form-control::placeholder,.rv-form textarea.wpcf7-form-control::placeholder{color:#8A8F92;opacity:1}
+.rv-form input.wpcf7-form-control:focus,.rv-form textarea.wpcf7-form-control:focus{outline:none;border-color:#095D7F;box-shadow:0 0 0 3px rgba(9,93,127,0.15)}
+.rv-form .wpcf7-not-valid{border-color:#B3261E !important}
+.rv-form .wpcf7-not-valid-tip{margin-top:6px;font-size:13px;color:#B3261E}
+.rv-form input.wpcf7-submit{align-self:flex-start;display:inline-flex;margin:4px 0 0;padding:13px 28px;border:0;border-radius:999px;background:#063F57;color:#fff;font:inherit;font-size:15px;line-height:1.4;cursor:pointer;transition:background 0.2s}
+.rv-form input.wpcf7-submit:hover,.rv-form input.wpcf7-submit:focus-visible{background:#B08D57;color:#fff}
+.rv-form .wpcf7-spinner{margin:10px 0 0 12px}
+.rv-form .wpcf7 form .wpcf7-response-output{margin:4px 0 0;padding:12px 16px;border:1px solid #D5D9DA;border-radius:12px;font-size:14px;line-height:1.5;color:#3E4144;background:#fff}
+.rv-form .wpcf7 form.sent .wpcf7-response-output{border-color:#2E7D4F;color:#1E5A37}
+.rv-form .wpcf7 form.invalid .wpcf7-response-output,.rv-form .wpcf7 form.failed .wpcf7-response-output,.rv-form .wpcf7 form.spam .wpcf7-response-output{border-color:#B3261E;color:#8C1D18}
+
 /* ---------- Contact: map ---------- */
 .elementor .e-con.rv-map-section{background:#fff}
 .elementor .e-con.rv-map-inner{display:flex;flex-direction:column;gap:24px;padding:88px 32px 96px}
