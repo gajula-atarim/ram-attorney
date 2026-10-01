@@ -91,6 +91,8 @@ a:hover{color:#063F57}
 .rv-menu a.hfe-menu-item.is-active,.rv-menu .current-menu-item > a.hfe-menu-item{background:#063F57;color:#fff}
 .rv-fmenu a.hfe-menu-item{padding:0;color:#fff}
 .rv-fmenu a.hfe-menu-item:hover{color:#D9BF8F}
+/* Footer: the current page is underlined with a gold line */
+.elementor .e-con .elementor-widget.rv-fmenu .hfe-nav-menu li.current-menu-item > a.hfe-menu-item{text-decoration:underline;text-decoration-color:#D9BF8F;text-decoration-thickness:2px;text-underline-offset:6px}
 @media (max-width:767px){
 	.elementor .e-con.rv-header-inner{padding:12px 20px;gap:0 12px}
 	.elementor .rv-logo img{height:48px}
