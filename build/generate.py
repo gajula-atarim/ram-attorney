@@ -35,6 +35,9 @@ T = {
         'home_label': 'THE COMPANY',
         'home1': 'RAM Management - Attorneys at Law provides legal and business consulting services.',
         'home2': 'In addition to offering corporate and commercial law services to small and medium-sized businesses, we are specialized in assisting non-resident entertainers and entertainment companies successfully navigate their Canadian tax matters.',
+        # Home hero (client revision, October 2026); 'home1' stays as the footer tagline.
+        'hero': ['RAM Management - Attorneys at Law is specialized in assisting non-resident entertainers and entertainment companies successfully navigate their Canadian tax matters.',
+                 'We also provide corporate and commercial law services to small and medium-sized businesses.'],
         'about_title': 'ABOUT',
         'about1': 'Founded in 1994 as a company primarily managing artists in the music industry and providing legal services to companies and organizations in the music sector, RAM Management has grown to provide legal counsel to all areas of business.',
         'about_rest': [
@@ -52,6 +55,7 @@ T = {
         ],
         'about6': 'Over the past decade, we have witnessed the greater attention that the CRA has paid to non-resident entertainers and their operations and believe it is more important than ever for non-residents working in Canada to ensure they are addressing all their Canadian tax obligations.',
         'team_label': 'OUR TEAM',
+        'team_roles': [('Richard Dermer', 'Owner'), ('Nadine Benny', 'Administration and Director of International Client Services'), ('Kayla Papps', 'International Client Coordinator')],
         'team': [
             (['RAM Management is owned by Richard Dermer, a long-time resident of Montreal and small business owner himself from 1985 to 1994.',
               'Richard graduated Vassar College with the Bachelor of Arts in History, followed by graduating with a Bachelor of Civil Law from McGill Law School and becoming a member of the Quebec Bar in 1994.',
@@ -75,6 +79,8 @@ T = {
         'home_label': "L'ENTREPRISE",
         'home1': 'RAM Management - Avocats offre des services de consultation juridique et commerciale.',
         'home2': "En plus d'offrir des services de droit corporatif et commercial aux petites et moyennes entreprises, nous sommes spécialisés dans l'aide aux artistes non-résidents et aux entreprises de divertissement en lien avec leurs questions fiscales canadiennes.",
+        'hero': ['RAM Management - Avocats sont spécialisés dans l’aide aux artistes non-résidents et aux entreprises de divertissement en lien avec leurs questions fiscales canadiennes.',
+                 'Nous offrons aussi des services de droit corporatif et commercial aux petites et moyennes entreprises.'],
         'about_title': 'À PROPOS',
         'about1': "Fondée en 1994 en tant qu'entreprise gérant principalement des artistes de l'industrie musicale et offrant des services juridiques à des entreprises et organisations du secteur, RAM Management a évolué et offre à présent des conseils juridiques à tous les domaines d'affaires.",
         'about_rest': [
@@ -92,6 +98,7 @@ T = {
         ],
         'about6': "Au cours de la dernière décennie, nous avons été témoins de l'attention accrue portée par l'ARC aux artistes non-résidents et à leurs opérations, et nous croyons qu'il est plus important que jamais pour les non-résidents travaillant au Canada de s'assurer qu'ils respectent toutes leurs obligations fiscales canadiennes.",
         'team_label': 'NOTRE ÉQUIPE',
+        'team_roles': [('Richard Dermer', 'Propriétaire'), ('Nadine Benny', 'Administration et directrice des services à la clientèle internationale'), ('Kayla Papps', 'Coordonnatrice des clients internationaux')],
         'team': [
             (["RAM Management fut fondée par Richard Dermer, un résident de longue date de Montréal et propriétaire d'une petite entreprise lui-même de 1985 à 1994.",
               'Richard a obtenu un baccalauréat en arts en histoire du Collège Vassar, puis un baccalauréat en droit civil de la faculté de droit de McGill et est devenu membre du barreau du Québec en 1994.',
@@ -321,9 +328,10 @@ def home(lang):
     return [d.section('rv-hero', [
         d.con('rv-inner rv-hero-inner', [
             d.text('rv-pill', p(t['home_label'])),
-            d.heading('rv-h1', t['home1'].replace('RAM Management - ', 'RAM Management -<br>', 1), 'h1'),
+            # Both hero sentences share one style (rv-hero-text); the first stays the page's h1.
+            d.heading('rv-hero-text', esc(t['hero'][0]), 'h1'),
+            d.text('rv-hero-text', p(t['hero'][1])),
             d.rule('rv-rule--hero', 72),
-            d.text('rv-lead', p(t['home2'])),
         ]),
     ], bg='hero', bg_y=45)]
 
@@ -337,17 +345,28 @@ def about(lang):
         'title_size': 'div',
         'position': 'top',
     }) for i, s in enumerate(t['services'])]
-    members = [d.con('rv-member', [d.text('rv-member-text', p(x)) for x in paras] + [d.text('rv-member-email', email_link(user))])
-               for paras, user in t['team']]
+    # One full-width row per member: bold name, role and email on the left, the bio on the right.
+    members = [d.con('rv-member rv-member--row', [
+        d.con('rv-member-side', [
+            d.heading('rv-member-name', name, 'h3'),
+            d.text('rv-member-role', p(role)),
+            d.text('rv-member-email', email_link(user)),
+        ]),
+        d.con('rv-member-bio', [d.text('rv-member-text', p(x)) for x in paras]),
+    ]) for (paras, user), (name, role) in zip(t['team'], t['team_roles'])]
     return [
         d.section('rv-banner rv-banner--about', [
             d.con('rv-inner rv-banner-inner', [d.heading('rv-banner-title', t['about_title'], 'h1')]),
         ], bg='about_banner', bg_y=40),
         d.section('rv-intro', [
             d.image('rv-justice', 'justice', ''),
-            d.con('rv-inner rv-intro-grid', [
-                d.con('rv-col', [d.rule('rv-rule--short', 56), d.text('rv-intro-lead', p(t['about1']))]),
-                d.con('rv-col rv-col--text', [d.text('rv-body', p(x)) for x in t['about_rest']]),
+            # Four paragraphs in one size, two per column.
+            d.con('rv-inner rv-intro-wrap', [
+                d.rule('rv-rule--short', 56),
+                d.con('rv-intro-grid', [
+                    d.con('rv-col rv-col--text', [d.text('rv-body', p(x)) for x in ([t['about1']] + t['about_rest'])[:2]]),
+                    d.con('rv-col rv-col--text', [d.text('rv-body', p(x)) for x in t['about_rest'][1:]]),
+                ]),
             ]),
         ]),
         d.section('rv-services', [
@@ -356,16 +375,16 @@ def about(lang):
                 d.con('rv-cards', cards),
             ]),
         ]),
+        # Plain blue until the client sends a Canadian tax/legal photo (the US 1040 image was removed).
         d.section('rv-quote', [
             d.con('rv-inner rv-quote-inner', [
-                d.text('rv-quote-mark', '<p>“</p>'),
                 d.text('rv-quote-text', p(t['about6'])),
             ]),
-        ], bg='quote'),
+        ]),
         d.section('rv-team', [
             d.con('rv-inner rv-team-inner', [
                 d.text('rv-pill rv-pill--team', p(t['team_label'])),
-                d.con('rv-team-grid', members),
+                d.con('rv-team-grid rv-team-rows', members),
             ]),
         ]),
     ]
