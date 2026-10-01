@@ -30,6 +30,7 @@ a:hover{color:#063F57}
 .elementor .elementor-widget.rv-pill{align-self:flex-start;display:flex;align-items:center;gap:10px;width:auto;max-width:100%;padding:8px 16px;border:1px solid rgba(217,191,143,0.55);border-radius:999px;background:rgba(255,255,255,0.06);color:#D9BF8F;font-size:13px;line-height:1.4;letter-spacing:0.18em}
 .elementor .elementor-widget.rv-pill::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:#D9BF8F}
 .elementor .elementor-widget.rv-pill--team{border-color:rgba(217,191,143,0.5)}
+.elementor .elementor-widget.rv-pill.rv-pill--team{font-size:17px;padding:10px 20px}
 
 /* ---------- Header ---------- */
 .ram-site-header{position:sticky;top:0;z-index:50}
