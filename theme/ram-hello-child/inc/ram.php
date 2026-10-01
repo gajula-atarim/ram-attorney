@@ -205,12 +205,20 @@ add_action( 'pre_get_posts', function ( $query ) {
 /**
  * Rendered Elementor template (Templates > Saved Templates) by slug, e.g. "ram-header".
  * "<slug>-<lang>" (e.g. "ram-header-fr") is used for that language when it exists; otherwise "<slug>".
+ * The 2026 design ("ram-v2-header" / "ram-v2-footer") uses the UAE header and footer when they are
+ * published (see ram_uae_template_id()); the Saved Templates stay as the fallback.
  * Returns '' when Elementor is off or the template is missing, so header.php / footer.php
  * fall back to the built-in markup.
  */
 function ram_hf_template( $slug ) {
 	if ( ! did_action( 'elementor/loaded' ) ) {
 		return '';
+	}
+	if ( 0 === strpos( $slug, 'ram-v2-' ) ) {
+		$uae = ram_uae_template_id( substr( $slug, strlen( 'ram-v2-' ) ) );
+		if ( $uae ) {
+			return (string) \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $uae, true );
+		}
 	}
 	$template = get_page_by_path( $slug . '-' . ram_lang(), OBJECT, 'elementor_library' );
 	if ( ! $template || 'publish' !== $template->post_status ) {
@@ -221,6 +229,44 @@ function ram_hf_template( $slug ) {
 	}
 	return (string) \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $template->ID, true );
 }
+
+/* ---------- Header and footer built with UAE (Ultimate Addons for Elementor) ---------- */
+
+/**
+ * UAE header or footer ("header" / "footer") for the current page in the current language: the
+ * template its display rules pick (Appearance > UAE), switched to its WPML translation. 0 when UAE is
+ * off or has no published template of that type.
+ */
+function ram_uae_template_id( $type ) {
+	if ( ! class_exists( 'Header_Footer_Elementor' ) ) {
+		return 0;
+	}
+	$id = (int) Header_Footer_Elementor::get_template_id( 'type_' . $type );
+	if ( ! $id ) {
+		return 0;
+	}
+	$id = (int) apply_filters( 'wpml_object_id', $id, 'elementor-hf', true, ram_lang() );
+	return 'publish' === get_post_status( $id ) ? $id : 0;
+}
+
+// On Hello Elementor, UAE swaps header.php / footer.php for its own files. This theme prints the UAE
+// templates itself (inside .ram-site-header / .ram-site-footer, with the skip link and <main>), so
+// that swap is turned off.
+add_action( 'wp', function () {
+	global $wp_filter;
+	foreach ( array( 'get_header', 'get_footer' ) as $hook ) {
+		if ( empty( $wp_filter[ $hook ] ) ) {
+			continue;
+		}
+		foreach ( $wp_filter[ $hook ]->callbacks as $priority => $callbacks ) {
+			foreach ( $callbacks as $cb ) {
+				if ( is_array( $cb['function'] ) && is_object( $cb['function'][0] ) && 'HFE\\Themes\\HFE_Default_Compat' === get_class( $cb['function'][0] ) ) {
+					remove_action( $hook, $cb['function'], $priority );
+				}
+			}
+		}
+	}
+}, 20 );
 
 // Mobile menu button used by the RAM Header template (a Shortcode block).
 add_shortcode( 'ram_menu_toggle', function () {
