@@ -25,6 +25,7 @@ IMG = {
     'justice': (148, 'ram-v2-lady-justice.jpg'),
     # Client's Canadian tax image (October 2026), replacing the US 1040 photo (149).
     'quote': (200, 'https://ram-attorney.wsdfy.com/wp-content/uploads/2026/10/ram-v2-quote-canada-tax.jpg'),
+    'quote_fr': (201, 'https://ram-attorney.wsdfy.com/wp-content/uploads/2026/10/ram-v2-quote-canada-tax-fr.jpg'),  # French version
     'contact_banner': (150, 'ram-v2-contact-banner.jpg'),
 }
 
@@ -384,7 +385,7 @@ def about(lang):
             d.con('rv-inner rv-quote-inner', [
                 d.text('rv-quote-text', p(t['about6'])),
             ]),
-        ], bg='quote'),
+        ], bg='quote_fr' if lang == 'fr' else 'quote'),
         d.section('rv-team', [
             d.con('rv-inner rv-team-inner', [
                 d.text('rv-pill rv-pill--team', p(t['team_label'])),
