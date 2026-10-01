@@ -268,6 +268,40 @@ add_action( 'wp', function () {
 	}
 }, 20 );
 
+// UAE adds the styles of all its widgets (plus Font Awesome and copies of some Elementor widget styles)
+// to every page. The RAM header, footer and pages are built with Elementor's own widgets, so those
+// styles are left out, which keeps the pages exactly as they were. They load again as soon as the
+// UAE header/footer or the current page uses any other widget (for example a UAE one).
+function ram_uae_styles_needed() {
+	$ids = array( ram_uae_template_id( 'header' ), ram_uae_template_id( 'footer' ), is_singular() ? get_queried_object_id() : 0 );
+	foreach ( array_filter( $ids ) as $id ) {
+		if ( preg_match( '/"widgetType":"(?!(?:image|heading|text-editor|shortcode|divider|icon|icon-box|google_maps)")/', (string) get_post_meta( $id, '_elementor_data', true ) ) ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function ram_uae_drop_styles() {
+	static $needed = null;
+	if ( ! class_exists( 'Header_Footer_Elementor' ) || ( isset( $_GET['elementor-preview'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		return;
+	}
+	if ( null === $needed ) {
+		$needed = ram_uae_styles_needed();
+	}
+	if ( $needed ) {
+		return;
+	}
+	foreach ( wp_styles()->queue as $handle ) {
+		if ( 0 === strpos( $handle, 'hfe-' ) ) {
+			wp_dequeue_style( $handle );
+		}
+	}
+}
+add_action( 'wp_print_styles', 'ram_uae_drop_styles', 100 );
+add_action( 'wp_print_footer_scripts', 'ram_uae_drop_styles', 1 );
+
 // Mobile menu button used by the RAM Header template (a Shortcode block).
 add_shortcode( 'ram_menu_toggle', function () {
 	return '<button class="ram-menu-toggle" type="button" aria-expanded="false" aria-controls="ram-menu"><span class="ram-sr">Menu</span><span class="ram-menu-toggle__bars" aria-hidden="true"></span></button>';
