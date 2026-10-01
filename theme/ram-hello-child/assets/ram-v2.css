@@ -73,9 +73,12 @@ a:hover{color:#063F57}
 .elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu__toggle,.elementor .e-con .elementor-widget.rv-fmenu .hfe-nav-menu__toggle{display:none !important}
 .elementor .e-con .elementor-widget.rv-menu nav,.elementor .e-con .elementor-widget.rv-fmenu nav{display:block;position:static;visibility:visible;opacity:1;height:auto;width:auto;margin:0;padding:0;background:none;box-shadow:none}
 .elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu,.elementor .e-con .elementor-widget.rv-fmenu ul.hfe-nav-menu{display:flex;flex-wrap:nowrap;align-items:center;margin:0;padding:0;list-style:none}
-.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu{flex-direction:row;gap:clamp(6px,1.4vw,14px)}
+.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu{flex-direction:row;gap:0}
+.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu > li.menu-item + li.menu-item{margin-left:clamp(6px,1.4vw,14px)}
+.elementor .e-con.rv-header-inner > .e-con.rv-nav:has(> .rv-menu){gap:0}
 .elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu::before,.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu::after,.elementor .e-con .elementor-widget.rv-fmenu ul.hfe-nav-menu::before,.elementor .e-con .elementor-widget.rv-fmenu ul.hfe-nav-menu::after{content:none;display:none}
-.elementor .e-con .elementor-widget.rv-fmenu ul.hfe-nav-menu{flex-direction:column;align-items:flex-start;gap:12px}
+.elementor .e-con .elementor-widget.rv-fmenu ul.hfe-nav-menu{flex-direction:column;align-items:flex-start;gap:0}
+.elementor .e-con .elementor-widget.rv-fmenu ul.hfe-nav-menu > li.menu-item + li.menu-item{margin-top:12px}
 .elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu > li.menu-item,.elementor .e-con .elementor-widget.rv-fmenu ul.hfe-nav-menu > li.menu-item{flex:none;margin:0;padding:0;border:0;background:none;list-style:none}
 .elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item,.elementor .e-con .elementor-widget.rv-fmenu .hfe-nav-menu a.hfe-menu-item{display:block;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:normal;letter-spacing:normal;text-transform:none;text-decoration:none;box-shadow:none;white-space:nowrap}
 .elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item{font-family:inherit !important;font-size:15px !important;font-weight:inherit !important;letter-spacing:normal !important;line-height:1.4 !important;border-radius:999px;transition:background 0.2s,color 0.2s}
@@ -100,7 +103,8 @@ a:hover{color:#063F57}
 	.elementor .rv-nav-item a{padding:12px 16px;border-radius:12px}
 	.elementor .e-con .elementor-widget.rv-logo .hfe-site-logo-container .hfe-site-logo-img{height:48px}
 	.elementor .e-con.rv-header-inner > .e-con.rv-nav .elementor-widget.rv-menu{width:100%}
-	.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu{flex-direction:column;align-items:stretch;gap:4px}
+	.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu{flex-direction:column;align-items:stretch;gap:0}
+	.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu > li.menu-item + li.menu-item{margin-left:0;margin-top:4px}
 	.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu > li.menu-item{width:100%}
 	.elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item{font-size:16px !important;border-radius:12px;white-space:normal}
 	.rv-menu a.hfe-menu-item{padding:12px 16px}
