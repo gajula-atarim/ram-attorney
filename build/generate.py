@@ -203,6 +203,22 @@ def p(s):
     return '<p>' + esc(s) + '</p>'
 
 
+# Phone, fax and address links (footer and Contact page). Fax numbers use tel: as no browser handles fax:.
+TEL_HREF = 'tel:+15143694412'
+FAX_HREF = 'tel:+15144895155'
+MAPS_HREF = 'https://www.google.com/maps/search/?api=1&query=5165+Queen+Mary+Road+Suite+405+Montreal+QC+H3W+1X7'
+
+
+def address_html(t):
+    return ('<p><a href="' + esc(MAPS_HREF) + '" target="_blank" rel="noopener">'
+            + '<br>'.join(esc(x) for x in t['address']) + '</a></p>')
+
+
+def phone_html(t):
+    return ('<p><a href="' + TEL_HREF + '">' + esc(t['tel']) + '</a><br>'
+            '<a href="' + FAX_HREF + '">' + esc(t['fax']) + '</a></p>')
+
+
 def email_link(user):
     return f'<p><a href="mailto:{user}@rammanagement.ca">{user}@rammanagement.ca</a></p>'
 
@@ -235,8 +251,8 @@ def footer(lang):
                 d.con('rv-fcol rv-flinks', [d.heading('rv-ftitle', t['footer_pages'], 'h4')] + [d.text('rv-flink', f'<p><a href="{url}">{esc(label)}</a></p>') for label, url in t['nav']]),
                 d.con('rv-fcol rv-fcontact', [
                     d.heading('rv-ftitle', t['footer_contact'], 'h4'),
-                    d.text('rv-faddr', '<p>' + '<br>'.join(esc(x) for x in t['address']) + '</p>'),
-                    d.text('rv-faddr', '<p>' + esc(t['tel']) + '<br>' + esc(t['fax']) + '</p>'),
+                    d.text('rv-faddr', address_html(t)),
+                    d.text('rv-faddr', phone_html(t)),
                     d.text('rv-fmail', email_link('info')),
                 ]),
             ]),
@@ -319,8 +335,8 @@ def uae_footer(lang):
                 d.con('rv-fcol rv-flinks', [d.heading('rv-ftitle', t['footer_pages'], 'h4'), uae_menu(d, 'rv-fmenu', 'footer')]),
                 d.con('rv-fcol rv-fcontact', [
                     d.heading('rv-ftitle', t['footer_contact'], 'h4'),
-                    d.text('rv-faddr', '<p>' + '<br>'.join(esc(x) for x in t['address']) + '</p>'),
-                    d.text('rv-faddr', '<p>' + esc(t['tel']) + '<br>' + esc(t['fax']) + '</p>'),
+                    d.text('rv-faddr', address_html(t)),
+                    d.text('rv-faddr', phone_html(t)),
                     d.text('rv-fmail', email_link('info')),
                 ]),
             ]),
@@ -412,12 +428,12 @@ def contact_form(lang):
 def contact(lang):
     t, d = T[lang], Doc('contact-' + lang)
 
-    def card(icon, html, link=None, extra_cls=''):
+    def card(icon, html, link=None, extra_cls='', external=False):
         extra = {}
         tag = None
         if link:
             tag = 'a'
-            extra = {'link': {'url': link, 'is_external': '', 'nofollow': ''}}
+            extra = {'link': {'url': link, 'is_external': 'on' if external else '', 'nofollow': ''}}
         return d.con('rv-dcard', [
             d.w('icon', 'rv-dicon', {'selected_icon': Doc.icon_value(icon)}),
             d.text('rv-dtext ' + extra_cls, html),
@@ -430,8 +446,9 @@ def contact(lang):
         d.section('rv-details', [
             d.con('rv-inner rv-details-inner', [
                 d.con('rv-dcards', [
-                    card('pin', '<p>' + '<br>'.join(esc(x) for x in t['address']) + '</p>'),
-                    card('phone', '<p>' + esc(t['tel']) + '<br>' + esc(t['fax']) + '</p>', link='tel:+15143694412'),
+                    card('pin', '<p>' + '<br>'.join(esc(x) for x in t['address']) + '</p>', link=MAPS_HREF, external=True),
+                    # Tel and fax are separate links inside the card (a whole-card link could hold only one).
+                    card('phone', phone_html(t), extra_cls='rv-dtext--links'),
                     card('mail', '<p>info@rammanagement.ca</p>', link='mailto:info@rammanagement.ca', extra_cls='rv-dtext--mail'),
                 ]),
             ]),

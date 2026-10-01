@@ -205,6 +205,8 @@ a:hover{color:#063F57}
 .elementor .rv-dicon .elementor-icon svg{width:20px;height:20px;fill:none;stroke:#fff}
 .elementor .rv-dtext p{font-size:16px;line-height:1.75;color:var(--rv-bc);transition:color 0.3s}
 .elementor .rv-dtext--mail p{text-decoration:underline;text-underline-offset:3px}
+.elementor .rv-dtext--links a{color:inherit;text-decoration:none}
+.elementor .rv-dtext--links a:hover,.elementor .rv-dtext--links a:focus-visible{text-decoration:underline;text-underline-offset:3px}
 
 /* ---------- Contact: form (Contact Form 7 via [ram_contact_form]) ---------- */
 .elementor .e-con.rv-form-section{background:#fff}
@@ -261,6 +263,8 @@ a:hover{color:#063F57}
 .elementor .rv-ftitle .elementor-heading-title{font-family:'Source Serif 4',serif;font-weight:500;font-size:20px;line-height:1.2;color:#D9BF8F}
 .elementor .e-con .elementor-widget.rv-faddr{margin-bottom:14px}
 .elementor .rv-faddr p{font-size:15px;line-height:1.6;color:#fff}
+.elementor .rv-faddr a{color:inherit;text-decoration:none;transition:color 0.2s}
+.elementor .rv-faddr a:hover,.elementor .rv-faddr a:focus-visible{color:#D9BF8F}
 .elementor .rv-fmail p{font-size:15px;line-height:1.6}
 .elementor .rv-fmail a{color:#fff;text-decoration:underline;text-underline-offset:3px}
 .elementor .rv-fmail a:hover{color:#D9BF8F}
