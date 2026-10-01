@@ -232,6 +232,90 @@ def footer(lang):
     ], inner=False)]
 
 
+# UAE (Ultimate Addons for Elementor) header and footer: the same blocks, with UAE's Site Logo and
+# Navigation Menu widgets in place of the logo image and the menu links. "__MENU__" is the WordPress
+# menu of that language (filled in by build/uae-widgets.php). Colours and spacing of the menus are set
+# in the widget (Style tab) so they can be changed in Elementor; ram-v2.css adds the pill shape, the
+# typography and the phone dropdown.
+MENU_STYLE = {
+    'header': {
+        'layout': 'horizontal',
+        'color_menu_item': '#211F20', 'bg_color_menu_item': '',
+        'color_menu_item_hover': '#211F20', 'bg_color_menu_item_hover': '#E4EEF2',
+        'color_menu_item_active': '#FFFFFF', 'bg_color_menu_item_active': '#063F57',
+        'padding_horizontal_menu_item': {'unit': 'px', 'size': 16, 'sizes': []},
+        'padding_vertical_menu_item': {'unit': 'px', 'size': 9, 'sizes': []},
+        'padding_vertical_menu_item_mobile': {'unit': 'px', 'size': 12, 'sizes': []},
+    },
+    'footer': {
+        'layout': 'vertical',
+        'color_menu_item': '#FFFFFF', 'bg_color_menu_item': '',
+        'color_menu_item_hover': '#D9BF8F', 'bg_color_menu_item_hover': '',
+        'color_menu_item_active': '#FFFFFF', 'bg_color_menu_item_active': '',
+        'padding_horizontal_menu_item': {'unit': 'px', 'size': 0, 'sizes': []},
+        'padding_vertical_menu_item': {'unit': 'px', 'size': 0, 'sizes': []},
+    },
+}
+
+
+def uae_menu(d, classes, where):
+    s = {
+        'menu': '__MENU__', 'navmenu_align': 'left', 'pointer': 'none', 'dropdown': 'none',
+        'submenu_icon': 'arrow', 'schema_support': 'no', 'menu_last_item': 'none', 'full_width_dropdown': '',
+        'menu_space_between': {'unit': 'px', 'size': 0, 'sizes': []},
+        'menu_row_space': {'unit': 'px', 'size': 0, 'sizes': []},
+    }
+    s.update(MENU_STYLE[where])
+    s['__globals__'] = {k: '' for k in s if k.startswith(('color_', 'bg_color_'))}
+    return d.w('navigation-menu', classes, s)
+
+
+def uae_logo(d, classes, key, link):
+    img_id, name = IMG[key]
+    return d.w('site-logo', classes, {
+        'site_logo_fallback': 'yes',
+        'custom_image': {'url': UPLOADS + name, 'id': img_id, 'source': 'library', 'size': ''},
+        'site_logo_size_size': 'full', 'align': 'left', 'caption_source': 'no',
+        'link_to': 'custom', 'link': {'url': link, 'is_external': '', 'nofollow': ''}, 'open_lightbox': 'no',
+    })
+
+
+def uae_header(lang):
+    t, d = T[lang], Doc('uae-header-' + lang)
+    return [d.con('rv-header', [
+        d.con('rv-inner rv-header-inner', [
+            uae_logo(d, 'rv-logo', 'logo', t['nav'][0][1]),
+            d.con('rv-nav', [uae_menu(d, 'rv-menu', 'header')], extra={'_element_id': 'ram-menu'}),
+            d.con('rv-hactions', [
+                d.text('rv-lang', '<p>[ram_lang_switch style="pills"]</p>'),
+                d.w('shortcode', 'rv-toggle', {'shortcode': '[ram_menu_toggle]'}),
+            ]),
+        ]),
+    ], inner=False)]
+
+
+def uae_footer(lang):
+    t, d = T[lang], Doc('uae-footer-' + lang)
+    return [d.con('rv-footer', [
+        d.con('rv-inner rv-footer-inner', [
+            d.con('rv-footer-cols', [
+                d.con('rv-fcol rv-fbrand', [
+                    uae_logo(d, 'rv-flogo', 'logo_white', t['nav'][0][1]),
+                    d.text('rv-ftag', p(t['home1'])),
+                ]),
+                d.con('rv-fcol rv-flinks', [d.heading('rv-ftitle', t['footer_pages'], 'h4'), uae_menu(d, 'rv-fmenu', 'footer')]),
+                d.con('rv-fcol rv-fcontact', [
+                    d.heading('rv-ftitle', t['footer_contact'], 'h4'),
+                    d.text('rv-faddr', '<p>' + '<br>'.join(esc(x) for x in t['address']) + '</p>'),
+                    d.text('rv-faddr', '<p>' + esc(t['tel']) + '<br>' + esc(t['fax']) + '</p>'),
+                    d.text('rv-fmail', email_link('info')),
+                ]),
+            ]),
+            d.con('rv-frule', []),
+        ]),
+    ], inner=False)]
+
+
 def home(lang):
     t, d = T[lang], Doc('home-' + lang)
     return [d.section('rv-hero', [
@@ -345,7 +429,7 @@ def contact(lang):
 def main():
     out = os.path.join(HERE, 'elementor')
     os.makedirs(out, exist_ok=True)
-    for name, fn in (('header', header), ('footer', footer), ('home', home), ('about', about), ('contact', contact), ('contact-form', lambda lang: [contact_form(lang)])):
+    for name, fn in (('header', header), ('footer', footer), ('home', home), ('about', about), ('contact', contact), ('contact-form', lambda lang: [contact_form(lang)]), ('uae-header', uae_header), ('uae-footer', uae_footer)):
         for lang in ('fr', 'en'):
             with open(os.path.join(out, f'{name}-{lang}.json'), 'w', encoding='utf-8') as f:
                 json.dump(fn(lang), f, ensure_ascii=False, separators=(',', ':'))

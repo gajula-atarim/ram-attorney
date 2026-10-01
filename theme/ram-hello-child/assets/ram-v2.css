@@ -64,6 +64,28 @@ a:hover{color:#063F57}
 .ram-menu-toggle[aria-expanded="true"] .ram-menu-toggle__bars{background:transparent}
 .ram-menu-toggle[aria-expanded="true"] .ram-menu-toggle__bars::before{transform:translateY(6px) rotate(45deg)}
 .ram-menu-toggle[aria-expanded="true"] .ram-menu-toggle__bars::after{transform:translateY(-6px) rotate(-45deg)}
+/* UAE Site Logo and Navigation Menu (header and footer built with UAE): same look as the blocks above.
+   Menu colours and padding come from the widget's Style tab; these rules give the layout, pill shape and type. */
+.elementor .e-con .elementor-widget.rv-logo .hfe-site-logo,.elementor .e-con .elementor-widget.rv-logo .hfe-site-logo-set,.elementor .e-con .elementor-widget.rv-logo .hfe-site-logo-container,.elementor .e-con .elementor-widget.rv-flogo .hfe-site-logo,.elementor .e-con .elementor-widget.rv-flogo .hfe-site-logo-set,.elementor .e-con .elementor-widget.rv-flogo .hfe-site-logo-container{display:block;margin:0;padding:0;line-height:0;text-align:left}
+.elementor .e-con .elementor-widget.rv-logo .hfe-site-logo-container .hfe-site-logo-img{display:block;height:58px;width:auto;max-width:none;margin:0}
+.elementor .e-con .elementor-widget.rv-flogo .hfe-site-logo-container .hfe-site-logo-img{display:block;height:84px;width:auto;max-width:none;margin:0}
+.elementor .e-con .elementor-widget.rv-menu,.elementor .e-con .elementor-widget.rv-fmenu{width:auto;flex:none}
+.elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu__toggle,.elementor .e-con .elementor-widget.rv-fmenu .hfe-nav-menu__toggle{display:none !important}
+.elementor .e-con .elementor-widget.rv-menu nav,.elementor .e-con .elementor-widget.rv-fmenu nav{display:block;position:static;visibility:visible;opacity:1;height:auto;width:auto;margin:0;padding:0;background:none;box-shadow:none}
+.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu,.elementor .e-con .elementor-widget.rv-fmenu ul.hfe-nav-menu{display:flex;flex-wrap:nowrap;align-items:center;margin:0;padding:0;list-style:none}
+.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu{flex-direction:row;gap:clamp(6px,1.4vw,14px)}
+.elementor .e-con .elementor-widget.rv-fmenu ul.hfe-nav-menu{flex-direction:column;align-items:flex-start;gap:12px}
+.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu > li.menu-item,.elementor .e-con .elementor-widget.rv-fmenu ul.hfe-nav-menu > li.menu-item{flex:none;margin:0;padding:0;border:0;background:none;list-style:none}
+.elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item,.elementor .e-con .elementor-widget.rv-fmenu .hfe-nav-menu a.hfe-menu-item{display:block;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:normal;letter-spacing:normal;text-transform:none;text-decoration:none;box-shadow:none;white-space:nowrap}
+.elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item{line-height:1.4;border-radius:999px;transition:background 0.2s,color 0.2s}
+.elementor .e-con .elementor-widget.rv-fmenu .hfe-nav-menu a.hfe-menu-item{font-size:15px;line-height:1.6}
+.elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item::before,.elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item::after,.elementor .e-con .elementor-widget.rv-fmenu .hfe-nav-menu a.hfe-menu-item::before,.elementor .e-con .elementor-widget.rv-fmenu .hfe-nav-menu a.hfe-menu-item::after{display:none}
+/* Fallback colours when the widget has none set */
+.rv-menu a.hfe-menu-item{padding:9px 16px;color:#211F20}
+.rv-menu a.hfe-menu-item:hover{background:#E4EEF2;color:#211F20}
+.rv-menu a.hfe-menu-item.is-active,.rv-menu .current-menu-item > a.hfe-menu-item{background:#063F57;color:#fff}
+.rv-fmenu a.hfe-menu-item{padding:0;color:#fff}
+.rv-fmenu a.hfe-menu-item:hover{color:#D9BF8F}
 @media (max-width:767px){
 	.elementor .e-con.rv-header-inner{padding:12px 20px;gap:0 12px}
 	.elementor .rv-logo img{height:48px}
@@ -75,6 +97,12 @@ a:hover{color:#063F57}
 	.elementor .e-con.rv-header-inner > .e-con.rv-nav.is-open{display:flex}
 	.elementor .elementor-widget.rv-nav-item{width:100%}
 	.elementor .rv-nav-item a{padding:12px 16px;border-radius:12px}
+	.elementor .e-con .elementor-widget.rv-logo .hfe-site-logo-container .hfe-site-logo-img{height:48px}
+	.elementor .e-con.rv-header-inner > .e-con.rv-nav .elementor-widget.rv-menu{width:100%}
+	.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu{flex-direction:column;align-items:stretch;gap:4px}
+	.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu > li.menu-item{width:100%}
+	.elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item{border-radius:12px;white-space:normal}
+	.rv-menu a.hfe-menu-item{padding:12px 16px}
 }
 
 /* ---------- Home: hero ---------- */

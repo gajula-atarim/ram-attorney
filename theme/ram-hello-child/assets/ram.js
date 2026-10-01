@@ -25,7 +25,9 @@
 	// Elementor header (both designs): highlight the current page and label the menu.
 	var navEl = document.querySelector('.rv-nav, .ramhf-nav');
 	if (navEl) {
-		if (navEl.tagName === 'NAV' && !navEl.hasAttribute('aria-label')) navEl.setAttribute('aria-label', document.documentElement.lang.indexOf('fr') === 0 ? 'Principal' : 'Main');
+		// The menu container is the <nav> itself, or holds one (UAE Navigation Menu).
+		var navTag = navEl.tagName === 'NAV' ? navEl : navEl.querySelector('nav');
+		if (navTag && !navTag.hasAttribute('aria-label')) navTag.setAttribute('aria-label', document.documentElement.lang.indexOf('fr') === 0 ? 'Principal' : 'Main');
 		var here = location.pathname.replace(/\/+$/, '') || '/';
 		Array.prototype.forEach.call(navEl.querySelectorAll('a'), function (a) {
 			if ((a.pathname.replace(/\/+$/, '') || '/') === here) {
