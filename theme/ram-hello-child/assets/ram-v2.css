@@ -20,7 +20,7 @@ a:hover{color:#063F57}
 .e-con.rv :where(.elementor-heading-title){margin:0;color:inherit}
 .elementor .e-con.rv > .e-con{position:relative;z-index:1}
 .elementor .e-con.rv-section{width:100%;max-width:none;position:relative;overflow:hidden}
-.elementor .e-con.rv-inner{width:100%;max-width:1040px;margin-left:auto;margin-right:auto}
+.elementor .e-con.rv-inner{width:100%;max-width:1180px;margin-left:auto;margin-right:auto}
 
 /* Gold rule (Divider widget) */
 .elementor .rv-rule .elementor-divider{padding:0;display:flex}
