@@ -192,6 +192,23 @@ a:hover{color:#063F57}
 .elementor .e-con .rv-member-side .elementor-widget.rv-member-email{margin-top:6px;padding-top:0}
 .elementor .rv-member--row .rv-member-text p{font-size:17px;line-height:1.75;font-weight:300}
 @media (max-width:767px){.elementor .e-con.rv-team-grid > .e-con.rv-member.rv-member--row{grid-template-columns:1fr;padding:28px 24px}.elementor .rv-member-name .elementor-heading-title{font-size:22px}}
+/* Our Team cards (client reference, October 2026): gold outline, name + gold rule + role + email on the
+   left, a thin gold divider, the bio on the right */
+.elementor .e-con.rv-team-grid > .e-con.rv-member.rv-member--row{grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:0;align-items:stretch;padding:46px 48px;background:linear-gradient(135deg,rgba(11,74,99,0.55) 0%,rgba(4,36,52,0.6) 100%);border:1px solid rgba(217,191,143,0.55);border-radius:22px}
+.elementor .e-con.rv-member.rv-member--row:hover{background:linear-gradient(135deg,rgba(11,74,99,0.7) 0%,rgba(4,36,52,0.7) 100%);border-color:rgba(217,191,143,0.85)}
+.elementor .rv-member--row .e-con.rv-member-side{gap:0;padding-right:40px}
+.elementor .rv-member--row .rv-member-name .elementor-heading-title{font-weight:500;font-size:34px;line-height:1.15;letter-spacing:-0.005em}
+.elementor .rv-member--row .rv-member-name .elementor-heading-title::after{content:"";display:block;width:36px;height:2px;margin:20px 0 22px;background:#B08D57}
+.elementor .rv-member.rv-member--row .rv-member-role p{font-family:'Source Serif 4',serif;font-size:18px;line-height:1.4;color:#D9BF8F}
+.elementor .e-con .rv-member--row .rv-member-side .elementor-widget.rv-member-email{margin-top:22px;padding-top:0}
+.elementor .rv-member--row .rv-member-email p{font-size:15px;line-height:1.5}
+.elementor .rv-member--row .rv-member-email a{display:inline-flex;align-items:center;gap:12px;color:#fff;font-weight:300;text-decoration:none;word-break:break-word}
+.elementor .rv-member--row .rv-member-email a::before{content:"";flex:none;width:22px;height:16px;background:#D9BF8F;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 16' fill='none' stroke='%23000' stroke-width='1.3'%3E%3Crect x='0.65' y='0.65' width='20.7' height='14.7' rx='1.5'/%3E%3Cpath d='M1 1.2l10 7.6 10-7.6M1 14.8l7.4-6.4M21 14.8l-7.4-6.4'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 16' fill='none' stroke='%23000' stroke-width='1.3'%3E%3Crect x='0.65' y='0.65' width='20.7' height='14.7' rx='1.5'/%3E%3Cpath d='M1 1.2l10 7.6 10-7.6M1 14.8l7.4-6.4M21 14.8l-7.4-6.4'/%3E%3C/svg%3E") center/contain no-repeat}
+.elementor .rv-member--row .rv-member-email a:hover,.elementor .rv-member--row .rv-member-email a:focus-visible{color:#D9BF8F;text-decoration:none}
+.elementor .rv-member--row .e-con.rv-member-bio{gap:22px;padding-left:46px;border-left:1px solid rgba(217,191,143,0.4)}
+.elementor .rv-member--row .rv-member-text p{font-size:17px;line-height:1.8;font-weight:300;letter-spacing:0.015em}
+@media (max-width:900px){.elementor .e-con.rv-team-grid > .e-con.rv-member.rv-member--row{grid-template-columns:minmax(0,240px) minmax(0,1fr);padding:40px 36px}.elementor .rv-member--row .rv-member-bio{padding-left:32px}.elementor .rv-member--row .e-con.rv-member-side{padding-right:28px}}
+@media (max-width:767px){.elementor .e-con.rv-team-grid > .e-con.rv-member.rv-member--row{grid-template-columns:1fr;padding:32px 24px}.elementor .rv-member--row .e-con.rv-member-side{padding-right:0;padding-bottom:26px}.elementor .rv-member--row .e-con.rv-member-bio{padding-left:0;padding-top:26px;border-left:0;border-top:1px solid rgba(217,191,143,0.4)}.elementor .rv-member--row .rv-member-name .elementor-heading-title{font-size:28px}.elementor .rv-member--row .rv-member-text p{font-size:16px}}
 
 /* ---------- Contact: details ---------- */
 .elementor .e-con.rv-details{background:#F2F1EE}
