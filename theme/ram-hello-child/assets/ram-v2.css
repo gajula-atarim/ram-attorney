@@ -77,7 +77,7 @@ a:hover{color:#063F57}
 .elementor .e-con .elementor-widget.rv-fmenu ul.hfe-nav-menu{flex-direction:column;align-items:flex-start;gap:12px}
 .elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu > li.menu-item,.elementor .e-con .elementor-widget.rv-fmenu ul.hfe-nav-menu > li.menu-item{flex:none;margin:0;padding:0;border:0;background:none;list-style:none}
 .elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item,.elementor .e-con .elementor-widget.rv-fmenu .hfe-nav-menu a.hfe-menu-item{display:block;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:normal;letter-spacing:normal;text-transform:none;text-decoration:none;box-shadow:none;white-space:nowrap}
-.elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item{line-height:1.4;border-radius:999px;transition:background 0.2s,color 0.2s}
+.elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item{font-size:15px;line-height:1.4;border-radius:999px;transition:background 0.2s,color 0.2s}
 .elementor .e-con .elementor-widget.rv-fmenu .hfe-nav-menu a.hfe-menu-item{font-size:15px;line-height:1.6}
 .elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item::before,.elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item::after,.elementor .e-con .elementor-widget.rv-fmenu .hfe-nav-menu a.hfe-menu-item::before,.elementor .e-con .elementor-widget.rv-fmenu .hfe-nav-menu a.hfe-menu-item::after{display:none}
 /* Fallback colours when the widget has none set */
@@ -101,7 +101,7 @@ a:hover{color:#063F57}
 	.elementor .e-con.rv-header-inner > .e-con.rv-nav .elementor-widget.rv-menu{width:100%}
 	.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu{flex-direction:column;align-items:stretch;gap:4px}
 	.elementor .e-con .elementor-widget.rv-menu ul.hfe-nav-menu > li.menu-item{width:100%}
-	.elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item{border-radius:12px;white-space:normal}
+	.elementor .e-con .elementor-widget.rv-menu .hfe-nav-menu a.hfe-menu-item{font-size:16px;border-radius:12px;white-space:normal}
 	.rv-menu a.hfe-menu-item{padding:12px 16px}
 }
 
