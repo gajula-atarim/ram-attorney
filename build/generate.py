@@ -79,7 +79,7 @@ T = {
         'home_label': "L'ENTREPRISE",
         'home1': 'RAM Management - Avocats offre des services de consultation juridique et commerciale.',
         'home2': "En plus d'offrir des services de droit corporatif et commercial aux petites et moyennes entreprises, nous sommes spécialisés dans l'aide aux artistes non-résidents et aux entreprises de divertissement en lien avec leurs questions fiscales canadiennes.",
-        'hero': ['RAM Management - Avocats sont spécialisés dans l’aide aux artistes non-résidents et aux entreprises de divertissement en lien avec leurs questions fiscales canadiennes.',
+        'hero': ['RAM Management - Avocats est spécialisé dans l’aide aux artistes non-résidents et aux entreprises de divertissement en lien avec leurs questions fiscales canadiennes.',
                  'Nous offrons aussi des services de droit corporatif et commercial aux petites et moyennes entreprises.'],
         'about_title': 'À PROPOS',
         'about1': "Fondée en 1994 en tant qu'entreprise gérant principalement des artistes de l'industrie musicale et offrant des services juridiques à des entreprises et organisations du secteur, RAM Management a évolué et offre à présent des conseils juridiques à tous les domaines d'affaires.",
