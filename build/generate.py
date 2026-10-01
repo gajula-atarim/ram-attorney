@@ -23,7 +23,8 @@ IMG = {
     'hero': (146, 'ram-v2-hero-montreal.jpg'),
     'about_banner': (147, 'ram-v2-about-banner.jpg'),
     'justice': (148, 'ram-v2-lady-justice.jpg'),
-    'quote': (149, 'ram-v2-quote-taxes.jpg'),
+    # Client's Canadian tax image (October 2026), replacing the US 1040 photo (149).
+    'quote': (200, 'https://ram-attorney.wsdfy.com/wp-content/uploads/2026/10/ram-v2-quote-canada-tax.jpg'),
     'contact_banner': (150, 'ram-v2-contact-banner.jpg'),
 }
 
@@ -147,7 +148,7 @@ class Doc:
             img_id, name = IMG[bg]
             extra = {
                 'background_background': 'classic',
-                'background_image': {'url': UPLOADS + name, 'id': img_id, 'size': '', 'alt': '', 'source': 'library'},
+                'background_image': {'url': img_url(name), 'id': img_id, 'size': '', 'alt': '', 'source': 'library'},
                 'background_position': 'initial',
                 'background_xpos': {'unit': '%', 'size': 50, 'sizes': []},
                 'background_ypos': {'unit': '%', 'size': bg_y, 'sizes': []},
@@ -177,7 +178,7 @@ class Doc:
 
     def image(self, classes, key, alt, link=None):
         img_id, name = IMG[key]
-        s = {'image': {'url': UPLOADS + name, 'id': img_id, 'alt': alt, 'source': 'library', 'size': ''},
+        s = {'image': {'url': img_url(name), 'id': img_id, 'alt': alt, 'source': 'library', 'size': ''},
              'image_size': 'full', 'caption_source': 'none'}
         if link:
             s['link_to'] = 'custom'
@@ -187,6 +188,10 @@ class Doc:
     @staticmethod
     def icon_value(name):
         return {'value': {'url': f'__ICON_{name}_URL__', 'id': f'__ICON_{name}_ID__'}, 'library': 'svg'}
+
+
+def img_url(name):
+    return name if name.startswith('http') else UPLOADS + name
 
 
 def esc(s):
@@ -375,12 +380,11 @@ def about(lang):
                 d.con('rv-cards', cards),
             ]),
         ]),
-        # Plain blue until the client sends a Canadian tax/legal photo (the US 1040 image was removed).
         d.section('rv-quote', [
             d.con('rv-inner rv-quote-inner', [
                 d.text('rv-quote-text', p(t['about6'])),
             ]),
-        ]),
+        ], bg='quote'),
         d.section('rv-team', [
             d.con('rv-inner rv-team-inner', [
                 d.text('rv-pill rv-pill--team', p(t['team_label'])),
